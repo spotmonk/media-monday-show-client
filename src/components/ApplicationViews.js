@@ -1,4 +1,8 @@
 import React from "react"
+import { Route } from "react-router-dom"
+import { EpisodeProvider } from "./episode/EpisodeProvider"
+import { Home } from "./home/home"
+
 
 export const ApplicationViews = () => {
     return (<>

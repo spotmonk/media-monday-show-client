@@ -4,6 +4,7 @@ import { ApplicationViews } from "./ApplicationViews.js"
 import { NavBar } from "./navbar/NavBar.js"
 import { Home } from "./home/home.js"
 import { homeAuthed } from './home/homeAuthed.js'
+import { EpisodeProvider } from './episode/EpisodeProvider'
 
 
 
@@ -21,10 +22,17 @@ export const MMS = () => (
         }} />
 
         <Route path="/home" render={() => {
+            if (localStorage.getItem("token")) {
+                return <Redirect to="/" />
+            } else {
            return (<>
-            <Home />
+           <NavBar />
+            <EpisodeProvider>
+                <Home />
+            </EpisodeProvider>
+            
            </>
-           )
+           )}
         }} />
 
     </>
