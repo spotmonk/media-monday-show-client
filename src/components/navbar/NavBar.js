@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"
 import LoginModal from '../auth/loginModal'
-import {  Nav, Navbar, NavbarBrand,Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem } from 'reactstrap';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, Button } from 'reactstrap';
 import { useHistory } from 'react-router'
 
 export const NavBar = (props) => {
-
+    const [isOpen, setIsOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdown2Open, setDropdown2Open] = useState(false);
     const history = useHistory()
@@ -18,6 +18,8 @@ export const NavBar = (props) => {
         history.go(0)
     }
 
+    const toggleCollapse = () => setIsOpen(!isOpen);
+
     return (
         <>
             {localStorage.getItem('token') ? 
@@ -25,8 +27,11 @@ export const NavBar = (props) => {
             <Nav className="d-flex" navbar>
             <NavbarBrand  href="/">Media Monday Show</NavbarBrand>
             </Nav>
-            <div className="container">
-            <NavbarBrand className="ml-auto mr-4">Media</NavbarBrand>
+            <Nav className="flex-wrap ml-auto">
+            <NavbarToggler onClick={toggleCollapse} />
+            <Collapse isOpen={isOpen} navbar>
+            <div className="container ml-auto">
+            <NavbarBrand className="mr-4">Media</NavbarBrand>
             <Dropdown className="mr-4 bg-dark" color="secondary" isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle caret>
                 My Media
@@ -47,16 +52,21 @@ export const NavBar = (props) => {
             <DropdownItem>Users</DropdownItem>
             </DropdownMenu>
             </Dropdown>
+            <Button onClick={logout} color="danger">Log Out</Button>
             </div>
-            <NavbarBrand className="ml-auto" onClick={logout}>Logout</NavbarBrand>
-            
+            </Collapse>
+            </Nav>
         </Navbar>
         :
         <Navbar color="dark" dark expand="md">
-            <Nav className="ml-auto" navbar>
+            
             <NavbarBrand href="/">Media Monday Show</NavbarBrand>
+            <Nav className="ml-auto" navbar>
+            <NavbarToggler onClick={toggleCollapse} />
+            <Collapse isOpen={isOpen} navbar>
             <LoginModal buttonLabel="Log In" />
-            <NavItem><button className="btn-danger">Sign Up</button></NavItem>
+            <NavItem><Button color="danger">Sign Up</Button></NavItem>
+            </Collapse>
         </Nav>
         </Navbar>
         }

@@ -1,0 +1,17 @@
+.home {
+    margin: 25px;
+    
+}
+.unauthedEpisode {
+    padding-top: 250px;
+    min-width: 350px;
+}
+
+.mediaList {
+    height: 800px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+}
+
+@media screen and (max-width: 1200px) { .home {flex-direction: column;} }

@@ -15,7 +15,7 @@ const LoginModal = (props) => {
 
   const toggle = () => setModal(!modal);
 
-  const doSomething = () =>{
+  const logIn = () =>{
     
     setInvalid(false)
     return fetch("http://localhost:8000/login", {
@@ -42,7 +42,7 @@ const LoginModal = (props) => {
   }
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+      <Button color="danger" onClick={toggle} className="mr-4">{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Log In</ModalHeader>
         <ModalBody>
@@ -66,7 +66,7 @@ const LoginModal = (props) => {
               </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={doSomething}>Do Something</Button>{' '}
+          <Button color="primary" onClick={logIn}>Log In</Button>{' '}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
