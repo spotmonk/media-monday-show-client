@@ -5,6 +5,7 @@ import { NavBar } from "./navbar/NavBar.js"
 import { Home } from "./home/home.js"
 import { homeAuthed } from './home/homeAuthed.js'
 import { EpisodeProvider } from './episode/EpisodeProvider'
+import { MediaProvider } from "./media/MediaProvider.js"
 
 
 
@@ -28,7 +29,9 @@ export const MMS = () => (
            return (<>
            <NavBar />
             <EpisodeProvider>
-                <Home />
+                <MediaProvider>
+                    <Home />
+                </MediaProvider>
             </EpisodeProvider>
             
            </>
