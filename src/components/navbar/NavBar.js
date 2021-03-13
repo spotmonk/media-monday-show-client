@@ -64,8 +64,8 @@ export const NavBar = (props) => {
             <Nav className="ml-auto" navbar>
             <NavbarToggler onClick={toggleCollapse} />
             <Collapse isOpen={isOpen} navbar>
-            <LoginModal buttonLabel="Log In" />
-            <NavItem><Button color="danger">Sign Up</Button></NavItem>
+            <LoginModal color="danger" buttonLabel="Log In" />
+            <NavItem> <Link className="nav-link" to="/signup"><Button color="danger">Sign Up</Button></Link></NavItem>
             </Collapse>
         </Nav>
         </Navbar>

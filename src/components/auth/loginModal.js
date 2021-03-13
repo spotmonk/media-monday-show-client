@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, Label, Input, FormGroup } from 'reactstrap';
 import { useHistory } from 'react-router'
 
-const LoginModal = (props) => {
+export const LoginModal = (props) => {
   const {
     buttonLabel,
-    className
+    className,
+    color
   } = props;
   const history = useHistory()
   const [modal, setModal] = useState(false);
@@ -42,7 +43,7 @@ const LoginModal = (props) => {
   }
   return (
     <div>
-      <Button color="danger" onClick={toggle} className="mr-4">{buttonLabel}</Button>
+      <Button color={color} onClick={toggle} className="mr-4">{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Log In</ModalHeader>
         <ModalBody>
