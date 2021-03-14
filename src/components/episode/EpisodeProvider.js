@@ -5,6 +5,7 @@ export const EpisodeContext = React.createContext()
 export const EpisodeProvider = (props) => {
   const [latest, setLatest] = useState([])
   const [allEpisodes, setAllEpisodes] = useState([])
+  const [singleEpisode, setSingleEpisode] = useState([])
 
   const getLatestEpisode = () => {
     return fetch("http://localhost:8000/episodes/latest", {
@@ -23,6 +24,15 @@ export const EpisodeProvider = (props) => {
         .then(setAllEpisodes)
 }
 
+  const getSingleEpisode = (episodeId) => {
+    return fetch(`http://localhost:8000/episodes/${episodeId}`, {
+      headers:{
+          "Authorization": `Token ${localStorage.getItem("token")}`
+      }
+  })
+      .then(response => response.json())
+      .then(setSingleEpisode)
+  }
 
 return (
   <EpisodeContext.Provider value={{
@@ -31,7 +41,10 @@ return (
       getLatestEpisode,
       allEpisodes,
       setAllEpisodes,
-      getAllEpisodes
+      getAllEpisodes,
+      singleEpisode,
+      setSingleEpisode,
+      getSingleEpisode
   }} >
       { props.children }
   </EpisodeContext.Provider>

@@ -5,6 +5,7 @@ export const MediaContext = React.createContext()
 export const MediaProvider = (props) => {
   const [latestMedia, setLatestMedia] = useState([])
   const [allMedia, setAllMedia] = useState([])
+  const [windowedMedia, setWindowedMedia] = useState([])
 
   const getLatestMedia = () => {
     return fetch("http://localhost:8000/media/latest", {
@@ -23,6 +24,18 @@ export const MediaProvider = (props) => {
         .then(setAllMedia)
 }
 
+  const getWindowedMedia = (startDate)=> {
+
+    return fetch(`http://localhost:8000/media/window?start_date=${startDate}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+        .then(response => response.json())
+        .then(setWindowedMedia)
+
+  }
+
 
 return (
   <MediaContext.Provider value={{
@@ -31,7 +44,10 @@ return (
       getLatestMedia,
       allMedia,
       setAllMedia,
-      getAllMedia
+      getAllMedia,
+      windowedMedia,
+      setWindowedMedia,
+      getWindowedMedia
   }} >
       { props.children }
   </MediaContext.Provider>
