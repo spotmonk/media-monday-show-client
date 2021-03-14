@@ -1,0 +1,19 @@
+.home {
+  margin: 25px;
+  
+}
+.leftPane {
+  min-width: 350px;
+}
+
+.mediaList {
+  height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  
+}
+
+.unAuthedEpisode {
+  min-width: 350px;
+}
+@media screen and (max-width: 1200px) { .home {flex-direction: column;} }

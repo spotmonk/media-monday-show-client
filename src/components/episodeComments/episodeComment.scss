@@ -1,0 +1,17 @@
+.commentBox{
+  background-color: white;
+  height: 300px;
+  direction: rtl;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 5px;
+}
+
+.item_direction {
+  direction:ltr;
+}
+
+.newCommentBox {
+  background-color: white;
+  border-radius: 5px;
+}
