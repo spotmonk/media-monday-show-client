@@ -7,6 +7,8 @@ import { HomeAuthed, homeAuthed } from './home/homeAuthed.js'
 import { EpisodeProvider } from './episode/EpisodeProvider'
 import { MediaProvider } from "./media/MediaProvider.js"
 import { SignUp } from './auth/Signup.js'
+import { UserProvider } from "./users/UserProvider.js"
+import { Users } from "./users/Users.js"
 
 
 
@@ -76,5 +78,16 @@ export const MMS = () => (
             }
         }} />
 
+        <Route exact path="/users" render={(props) => {
+            if (localStorage.getItem("token")) {
+                return <>
+                  <UserProvider>
+                    <Users {...props} />
+                 </UserProvider>
+                </>
+            } else {
+                return <Redirect to="/home" />
+            }
+        }} />
     </>
 )
