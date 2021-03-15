@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import LoginModal from '../auth/loginModal'
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, Button } from 'reactstrap';
 import { useHistory } from 'react-router'
+import './navbar.scss'
 
 export const NavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,7 @@ export const NavBar = (props) => {
             </DropdownToggle>
             <DropdownMenu>
             <DropdownItem>All Top Lists</DropdownItem>
-            <DropdownItem>Users</DropdownItem>
+            <Link to="/users" style={{ textDecoration: 'none' }}><DropdownItem component={Link}>Users</DropdownItem></Link>
             </DropdownMenu>
             </Dropdown>
             <Button onClick={logout} color="danger">Log Out</Button>
