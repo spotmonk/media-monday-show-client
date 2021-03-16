@@ -9,6 +9,7 @@ import { MediaProvider } from "./media/MediaProvider.js"
 import { SignUp } from './auth/Signup.js'
 import { UserProvider } from "./users/UserProvider.js"
 import { Users } from "./users/Users.js"
+import { MediaSearch } from "./media/MediaSearch.js"
 
 
 
@@ -84,6 +85,18 @@ export const MMS = () => (
                   <UserProvider>
                     <Users {...props} />
                  </UserProvider>
+                </>
+            } else {
+                return <Redirect to="/home" />
+            }
+        }} />
+
+        <Route exact path="/mediasearch" render={(props) => {
+            if (localStorage.getItem("token")) {
+                return <>
+                <MediaProvider>
+                    <MediaSearch {...props}/>
+                </MediaProvider>
                 </>
             } else {
                 return <Redirect to="/home" />

@@ -32,7 +32,7 @@ export const NavBar = (props) => {
             <NavbarToggler onClick={toggleCollapse} />
             <Collapse isOpen={isOpen} navbar>
             <div className="container ml-auto">
-            <NavbarBrand className="mr-4">Media</NavbarBrand>
+            <Link to="/mediasearch" style={{ textDecoration: 'none' }}><NavbarBrand className="mr-4">Media</NavbarBrand></Link>
             <Dropdown className="mr-4 bg-dark" color="secondary" isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle caret>
                 My Media
