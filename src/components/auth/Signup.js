@@ -1,5 +1,5 @@
 import React, { useRef } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { LoginModal } from "./loginModal"
 import "./signup.scss"
 
@@ -52,7 +52,6 @@ export const SignUp = (props) => {
                     if ("valid" in res && res.valid) {
                         localStorage.setItem("user_id", res.user_id )
                         localStorage.setItem("token", res.token)
-                        localStorage.setItem("isAdmin", res.isAdmin)
                         history.push("/")
                     }
                 })

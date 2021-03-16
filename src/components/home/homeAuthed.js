@@ -7,6 +7,7 @@ import './homeAuthed.scss'
 import { EpisodeCommentProvider } from '../episodeComments/EpisodeCommentsProvider.js'
 import { UserProvider } from '../users/UserProvider.js'
 import { EpisodeComments } from '../episodeComments/EpisodeComments.js'
+import { WatchProvider } from '../status/WatchProvider.js'
 
 export const HomeAuthed = (props) => {
 
@@ -43,7 +44,9 @@ export const HomeAuthed = (props) => {
     </div>
     </div>
     <div className="mediaList d-flex row-wrap row col-8 mt-2">
+      <WatchProvider>
       {latestMedia && <AuthedMultiMediaDisplay media={props.match.params.episodeId ? windowedMedia : latestMedia}/>}
+      </WatchProvider>
     </div>
   </div>
   )
