@@ -6,3 +6,23 @@
 body {
   background-color: $favColor;
 }
+
+.image:hover > .overlay {
+  background-color:#000;
+  opacity:0.5;
+
+}
+
+div.show-image:hover div.btndiv {
+  display: block;
+  opacity: 80%;
+}
+
+
+div.show-image div.btndiv {
+  position: absolute;
+  display: none;
+  top:25%;
+  left:30%;
+}
+

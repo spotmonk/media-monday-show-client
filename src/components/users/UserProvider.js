@@ -6,6 +6,7 @@ export const UserProvider = (props) => {
   const [users, setUsers] = useState([])
   const [user, setUser]= useState([])
   const [currentUser, setCurrentUser] = useState([])
+  
 
 
   const getAllUsers = () => {
@@ -38,6 +39,9 @@ const getUser = (userId) => {
       .then(setUser)
 }
 
+
+
+
 return (
   <UserContext.Provider value={{
       users,
@@ -48,7 +52,7 @@ return (
       getUser,
       currentUser,
       setCurrentUser,
-      getCurrentUser
+      getCurrentUser,
   }} >
       { props.children }
   </UserContext.Provider>

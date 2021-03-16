@@ -1,15 +1,15 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
-import { ApplicationViews } from "./ApplicationViews.js"
 import { NavBar } from "./navbar/NavBar.js"
 import { Home } from "./home/home.js"
-import { HomeAuthed, homeAuthed } from './home/homeAuthed.js'
+import { HomeAuthed} from './home/homeAuthed.js'
 import { EpisodeProvider } from './episode/EpisodeProvider'
 import { MediaProvider } from "./media/MediaProvider.js"
 import { SignUp } from './auth/Signup.js'
 import { UserProvider } from "./users/UserProvider.js"
 import { Users } from "./users/Users.js"
 import { MediaSearch } from "./media/MediaSearch.js"
+import { WatchProvider } from "./status/WatchProvider.js"
 
 
 
@@ -94,9 +94,11 @@ export const MMS = () => (
         <Route exact path="/mediasearch" render={(props) => {
             if (localStorage.getItem("token")) {
                 return <>
+                <WatchProvider>
                 <MediaProvider>
                     <MediaSearch {...props}/>
                 </MediaProvider>
+                </WatchProvider>
                 </>
             } else {
                 return <Redirect to="/home" />

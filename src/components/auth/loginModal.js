@@ -34,6 +34,7 @@ export const LoginModal = (props) => {
             .then(res => {
                 if ("valid" in res && res.valid) {
                     localStorage.setItem("token", res.token)
+                    localStorage.setItem("user_id", res.user_id)
                     history.push('/')
                 }
                 else {
