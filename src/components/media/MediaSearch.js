@@ -30,7 +30,7 @@ export const MediaSearch = () => {
         <h1>Search for a TV Show or Movie</h1>
         <input type="text" value={searchTerms} onChange={e => setSearchTerms(e.target.value)} name="search" className="form-control col-4 offset-4" placeholder="Taskmaster" />
         <div><h6  className="m-2" style={{ display: 'inline' }}>Not seeing what you're looking for?</h6><Button onClick={searchMore}>Search Deeper</Button></div>
-        <div className="media-div p-4 row">
+        <div className="media-div p-4 d-flex flex-wrap">
                 {media.count > 0 && media.results.map(m =>
                 <div className="col-lg-3 mb-1 ">
                 <div class="show-image">
