@@ -10,6 +10,8 @@ import { UserProvider } from "./users/UserProvider.js"
 import { Users } from "./users/Users.js"
 import { MediaSearch } from "./media/MediaSearch.js"
 import { WatchProvider } from "./status/WatchProvider.js"
+import { SingleMedia } from "./media/SingleMedia.js"
+import { ReviewProvider } from "./reviews/ReviewProvider.js"
 
 
 
@@ -97,6 +99,22 @@ export const MMS = () => (
                 <WatchProvider>
                 <MediaProvider>
                     <MediaSearch {...props}/>
+                </MediaProvider>
+                </WatchProvider>
+                </>
+            } else {
+                return <Redirect to="/home" />
+            }
+        }} />
+
+        <Route path="/media/:mediaId" render={(props) => {
+            if (localStorage.getItem("token")) {
+                return <>
+                <WatchProvider>
+                <MediaProvider>
+                <ReviewProvider>
+                    <SingleMedia {...props}/>
+                </ReviewProvider>
                 </MediaProvider>
                 </WatchProvider>
                 </>

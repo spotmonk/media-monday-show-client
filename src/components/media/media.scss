@@ -15,3 +15,28 @@
     text-align: center;
     border-radius: 0 0 5px 5px;
 }
+
+.left-panel {
+    height: 90%;
+}
+
+.review-panel {
+    width: auto;
+    height: 70%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.new-review {
+    width: auto;
+    height: 20%;
+    background-color: white;
+    border-radius: 5px;
+}
+.review {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 1200px) { .single-media {flex-direction: column;} }
+@media screen and (max-width: 1200px) { .review {flex-direction: column;} }
