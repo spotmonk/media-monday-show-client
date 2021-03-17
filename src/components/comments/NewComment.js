@@ -21,7 +21,7 @@ export const NewComment = (props) => {
           "user_id": currentUser.id,
           "text": commentText
       }
-       postNewComment(JSON.stringify(comment))
+       postNewComment(comment)
        .then(reload())
        .then(setCommentText(''))
       //  .then(window.location.reload(true));

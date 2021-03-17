@@ -23,10 +23,9 @@ export const EpisodeCommentProvider = (props) => {
             "Authorization": `Token ${localStorage.getItem("token")}`,
             "Content-Type": "application/json"
         },
-        body: comment
+        body: JSON.stringify(comment)
     })
-        .then(res => res.json())
-        .then(setECRes)
+        .then(getEC(comment.episode_id))
 }
 
   const deleteComment = (commentId) => {

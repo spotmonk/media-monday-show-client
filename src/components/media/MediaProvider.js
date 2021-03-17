@@ -7,6 +7,7 @@ export const MediaProvider = (props) => {
   const [allMedia, setAllMedia] = useState([])
   const [windowedMedia, setWindowedMedia] = useState([])
   const [media, setMedia] = useState([])
+  const [singleMedia, setSingleMedia] = useState([])
 
   const getLatestMedia = () => {
     return fetch("http://localhost:8000/media/latest", {
@@ -58,6 +59,16 @@ export const MediaProvider = (props) => {
     }
     } 
     
+    const getSingleMedia = (mediaId) => {
+        return fetch(`http://localhost:8000/media/${mediaId}`, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setSingleMedia)
+    }
+
 
 return (
   <MediaContext.Provider value={{
@@ -72,7 +83,10 @@ return (
       getWindowedMedia,
       media,
       getMedia,
-      setMedia
+      setMedia,
+      singleMedia,
+      setSingleMedia,
+      getSingleMedia
   }} >
       { props.children }
   </MediaContext.Provider>

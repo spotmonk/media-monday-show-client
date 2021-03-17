@@ -42,7 +42,7 @@ export const ToWatchButton = (props) => {
     }
     return (<>
         
-            {buttonText()}
+            {toWatch && buttonText()}
 
         
     </>)

@@ -15,7 +15,7 @@ export const MediaSearch = () => {
         if (searchTerms) {
         search(searchTerms)
         }
-          },[searchTerms, watchlist])
+          },[searchTerms])
 
     const search = () => {
         getWatchList()
