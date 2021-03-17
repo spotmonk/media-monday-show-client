@@ -12,6 +12,7 @@ import { MediaSearch } from "./media/MediaSearch.js"
 import { WatchProvider } from "./status/WatchProvider.js"
 import { SingleMedia } from "./media/SingleMedia.js"
 import { ReviewProvider } from "./reviews/ReviewProvider.js"
+import { ToWatch } from "./towatch/ToWatch.js"
 
 
 
@@ -116,6 +117,17 @@ export const MMS = () => (
                     <SingleMedia {...props}/>
                 </ReviewProvider>
                 </MediaProvider>
+                </WatchProvider>
+                </>
+            } else {
+                return <Redirect to="/home" />
+            }
+        }} />
+        <Route exact path="/towatch" render={(props) => {
+            if (localStorage.getItem("token")) {
+                return <>
+                <WatchProvider>
+                    <ToWatch {...props}/>
                 </WatchProvider>
                 </>
             } else {

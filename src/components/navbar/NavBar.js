@@ -38,7 +38,7 @@ export const NavBar = (props) => {
                 My Media
             </DropdownToggle>
             <DropdownMenu>
-                <DropdownItem>To Watch</DropdownItem>
+            <Link to="/towatch" style={{ textDecoration: 'none' }}><DropdownItem>To Watch</DropdownItem></Link>
                 <DropdownItem>Watched</DropdownItem>
                 <DropdownItem>Rankings</DropdownItem>
                 <DropdownItem>My Profile</DropdownItem>
