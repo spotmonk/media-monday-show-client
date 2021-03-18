@@ -1,21 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { WatchContext } from '../status/WatchProvider'
-import { ToWatchButton } from '../status/ToWatchButton'
-import { MarkWatchedButton } from '../status/MarkWatchedButton'
+import { WatchedButton } from '../status/WatchedButton'
+import { Button } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 
-export const ToWatch = () =>{
-    const {toWatch, getToWatch, watchlist, getWatchList} = useContext(WatchContext)
+export const Watched = () =>{
+    const {filteredWatched, getFilteredWatched, watchlist, getWatchList} = useContext(WatchContext)
     const [searchTerms, setSearchTerms ] = useState("")
     const [media, setMedia ] = useState("")
     
     useEffect(()=> {
         getWatchList()
-        .then(getToWatch(localStorage.getItem('user_id'), searchTerms, media))
+        .then(getFilteredWatched(localStorage.getItem('user_id'), searchTerms, media))
     }, [searchTerms, media])
 
     useEffect(() => {
-        getToWatch(localStorage.getItem('user_id'), searchTerms, media)
+        getFilteredWatched(localStorage.getItem('user_id'), searchTerms, media)
     },[watchlist, media])
 
     return(<> 
@@ -26,22 +27,22 @@ export const ToWatch = () =>{
         <option value="Movie">Movies</option>
         </select>
         <div className="media-div p-4 d-flex flex-wrap">
-        {toWatch.count > 0 && toWatch.results.map(tw => (
+        {filteredWatched.count > 0 && filteredWatched.results.map(w => (
             <div className="col-sm-3 mb-4 ">
             <div className="show-image">
                 <div className="image">
                     <div className="overlay">
-                    <img className="poster" src={tw.media_id.poster_url} /></div>
+                    <img className="poster" src={w.media_id.poster_url} /></div>
             </div>
             <div className="btndiv text-center">
-            <div className="mb-4">{toWatch.count > 0 && <ToWatchButton size="lg" className="toWatchButton" getWatchList={getWatchList} mediaId={tw.media_id.id} toWatch={watchlist.toWatch} watched={watchlist.watched}/>}</div>
-            <div><MarkWatchedButton getWatchList={getWatchList} toWatchId={tw.id} mediaId={tw.media_id.id} size="lg" /></div>
+            <div className="m-3"><Link to={`editwatched/${w.id}`}><Button color="light">Edit Watched Details</Button></Link></div>
+            <div><WatchedButton getWatchList={getWatchList} watchedId={w.id} mediaId={w.media_id.id} size="lg" /></div>
             </div>
             </div>
             <div className="textBlock text-center">
-            <div className="mediaTitle">{tw.media_id.title}</div>
-            <div className="mediaReleaseDate">{tw.media_id.release_date}</div>
-            <div className="mediadescription">{tw.media_id.media_type} - {tw.media_id.description}</div>
+            <div className="mediaTitle">{w.media_id.title}</div>
+            <div className="mediaReleaseDate">{w.media_id.release_date}</div>
+            <div className="mediadescription">{w.media_id.media_type} - {w.media_id.description}</div>
             </div>
                </div>
         ))}

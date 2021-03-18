@@ -6,6 +6,7 @@ export const WatchProvider = (props) => {
     const [watchlist, setWatchlist ] = useState([])
     const [toWatch, setToWatch] = useState([])
     const [watched, setWatched] = useState([])
+    const [filteredWatched, setFilteredWatched] = useState([])
 
     const getWatchList = () => {
         return fetch("http://localhost:8000/users/watchlist", {
@@ -82,9 +83,21 @@ export const WatchProvider = (props) => {
             }
         })
             .then(response => response.json())
-            .then(setWatched) 
+            .then(setFilteredWatched) 
     }
 
+    const removeWatched = (WatchedId) => {
+        return fetch(`http://localhost:8000/watched/${WatchedId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+        })
+        .then(getWatched())
+        
+    }
+
+    
     return (
     <WatchContext.Provider value={{
         watchlist,
@@ -96,10 +109,12 @@ export const WatchProvider = (props) => {
         setToWatch,
         getToWatch,
         watched,
+        filteredWatched,
         setWatched,
         getWatched,
         getFilteredWatched,
-        addWatched
+        addWatched,
+        removeWatched
     }} >
         { props.children }
     </WatchContext.Provider>

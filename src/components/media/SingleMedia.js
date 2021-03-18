@@ -44,7 +44,9 @@ export const SingleMedia = (props) => {
         <div className="right-panel col-8" >
             <div className="review-panel overflow-auto">
                     {reviews.count > 0 ? reviews.results.map(review =>
-                   <Review review={review} reload={reload} setReload={setReload} />) : <h1 className="text-center" >No Reviews Yet</h1>} 
+                     <UserProvider>
+                   <Review review={review} reload={reload} setReload={setReload} />
+                   </UserProvider>) : <h1 className="text-center" >No Reviews Yet</h1>} 
             </div>
             <div className="new-review mt-3">
             <UserProvider>
