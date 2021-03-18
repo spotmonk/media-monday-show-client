@@ -13,8 +13,8 @@ export const ReviewComments = (props) => {
         {reviewComments.count > 0 && reviewComments.results.map(rc =>  
       <div className="comment mb-2 item_direction d-flex" >
         <div className="user align-content-center m-2 col-4">
-          <img className="profilepic rounded-circle" src={review && review.user_id.profile_image_url} />
-          <h6>{review.user_id && review.user_id.user_id.username}</h6>
+          <img className="profilepic rounded-circle" src={rc && rc.user_id.profile_image_url} />
+          <h6>{rc.user_id && rc.user_id.username}</h6>
         </div>
         <div className="comment-text col-7 m-2">
           <p>{rc.text}</p>
