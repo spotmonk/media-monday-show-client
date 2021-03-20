@@ -32,7 +32,7 @@ export const EpisodeCommentProvider = (props) => {
     return fetch(`http://localhost:8000/episodecomments/${commentId }`, {
     method: "DELETE",
     headers:{
-        "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        "Authorization": `Token ${localStorage.getItem("token")}`
     }
   })
     .then(res => res.json())

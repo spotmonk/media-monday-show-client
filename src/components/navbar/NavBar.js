@@ -40,7 +40,7 @@ export const NavBar = (props) => {
             <DropdownMenu>
             <Link to="/towatch" style={{ textDecoration: 'none' }}><DropdownItem>To Watch</DropdownItem></Link>
             <Link to="/watched" style={{ textDecoration: 'none' }}> <DropdownItem>Watched</DropdownItem></Link>
-                <DropdownItem>Rankings</DropdownItem>
+            <Link to="/rankings" style={{ textDecoration: 'none' }}><DropdownItem>Rankings</DropdownItem></Link>
                 <DropdownItem>My Profile</DropdownItem>
             </DropdownMenu>
             </Dropdown>

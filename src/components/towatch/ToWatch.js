@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { WatchContext } from '../status/WatchProvider'
 import { ToWatchButton } from '../status/ToWatchButton'
 import { MarkWatchedButton } from '../status/MarkWatchedButton'
+import { RankingProvider } from '../rankings/RankingProvider'
 
 
 export const ToWatch = () =>{
@@ -35,7 +36,7 @@ export const ToWatch = () =>{
             </div>
             <div className="btndiv text-center">
             <div className="mb-4">{toWatch.count > 0 && <ToWatchButton size="lg" className="toWatchButton" getWatchList={getWatchList} mediaId={tw.media_id.id} toWatch={watchlist.toWatch} watched={watchlist.watched}/>}</div>
-            <div><MarkWatchedButton getWatchList={getWatchList} toWatchId={tw.id} mediaId={tw.media_id.id} size="lg" /></div>
+            <div><RankingProvider><MarkWatchedButton getWatchList={getWatchList} toWatchId={tw.id} mediaId={tw.media_id.id} size="lg" /></RankingProvider></div>
             </div>
             </div>
             <div className="textBlock text-center">
