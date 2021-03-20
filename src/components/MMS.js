@@ -14,6 +14,8 @@ import { SingleMedia } from "./media/SingleMedia.js"
 import { ReviewProvider } from "./reviews/ReviewProvider.js"
 import { ToWatch } from "./towatch/ToWatch.js"
 import { Watched } from "./watched/Watched.js"
+import { Rankings } from "./rankings/Rankings.js"
+import { RankingProvider } from './rankings/RankingProvider'
 
 
 
@@ -142,6 +144,19 @@ export const MMS = () => (
                 <WatchProvider>
                     <Watched {...props}/>
                 </WatchProvider>
+                </>
+            } else {
+                return <Redirect to="/home" />
+            }
+        }} />
+
+        
+        <Route exact path="/rankings" render={(props) => {
+            if (localStorage.getItem("token")) {
+                return <>
+                <RankingProvider>
+                    <Rankings {...props}/>
+                </RankingProvider>
                 </>
             } else {
                 return <Redirect to="/home" />

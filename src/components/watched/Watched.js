@@ -3,6 +3,7 @@ import { WatchContext } from '../status/WatchProvider'
 import { WatchedButton } from '../status/WatchedButton'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { RankingProvider } from '../rankings/RankingProvider'
 
 
 export const Watched = () =>{
@@ -36,7 +37,7 @@ export const Watched = () =>{
             </div>
             <div className="btndiv text-center">
             <div className="m-3"><Link to={`editwatched/${w.id}`}><Button color="light">Edit Watched Details</Button></Link></div>
-            <div><WatchedButton getWatchList={getWatchList} watchedId={w.id} mediaId={w.media_id.id} size="lg" /></div>
+            <div><RankingProvider><WatchedButton getWatchList={getWatchList} watchedId={w.id} mediaId={w.media_id.id} size="lg" /></RankingProvider></div>
             </div>
             </div>
             <div className="textBlock text-center">
