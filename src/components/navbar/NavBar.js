@@ -49,7 +49,7 @@ export const NavBar = (props) => {
             Other People's Media
             </DropdownToggle>
             <DropdownMenu>
-            <DropdownItem>All Top Lists</DropdownItem>
+            <Link to="/toplists" style={{ textDecoration: 'none' }}><DropdownItem>All Top Lists</DropdownItem></Link>
             <Link to="/users" style={{ textDecoration: 'none' }}><DropdownItem component={Link}>Users</DropdownItem></Link>
             </DropdownMenu>
             </Dropdown>

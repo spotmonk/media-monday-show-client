@@ -22,8 +22,6 @@ export const RankingItem = (props) => {
     }
 
     const insert = () => {
-        console.warn(ranking)
-        console.warn(count)
         if (ranking > 0 && (ranking <= count + 1 || count == 0)) {
             console.warn("inserting")
             insertRanking(item.id, ranking)

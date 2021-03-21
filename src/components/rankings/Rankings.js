@@ -1,5 +1,5 @@
 import { Button } from 'reactstrap'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { RankingItem } from './RankingItem'
 import { RankingProvider, RankingsContext } from './RankingProvider'
 import { TopListContext } from '../toplist/ToplistProvider'
@@ -12,6 +12,7 @@ export const Rankings = (props) => {
     const [listNumber, setListNumber] = useState(0)
     const [listTitle, setListTitle] = useState('')
     const { topList, createList } = useContext(TopListContext)
+    const modalDialog = useRef()
 
     useEffect(()=> {
         getRanked()
@@ -19,16 +20,25 @@ export const Rankings = (props) => {
     }, [refresh])
 
     const makeList = () => {
+        if(listNumber <= ranked.length){
         createList(listTitle, listNumber)
+         }
+        else{
+            modalDialog.current.showModal()
+        }
     }
 
     useEffect(() => {
         if (topList.id){
-            props.history.push(`/topList/${topList.id}`)
+            props.history.push(`/toplist/${topList.id}`)
         }
     },[topList])
 
-    return(
+    return(<>
+        <dialog className="dialog" ref={modalDialog}>
+        <div>Not Enough Ranked Items</div>
+        <button className="button--close" onClick={e => modalDialog.current.close()}>Close</button>
+        </dialog>
         <div className="rankings row-wrap d-flex">
             <div className={`unranked ${unranked  ? 'col-4' : 'col-3'}`}>
                 <h2 className="text-center">Unranked Items</h2>
@@ -44,5 +54,6 @@ export const Rankings = (props) => {
             <Button className="m-4 btn-lg" onClick={makeList} color="primary">Create</Button>
             </div>
         </div>
+        </>
     )
 }
