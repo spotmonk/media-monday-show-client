@@ -16,6 +16,7 @@ import { ToWatch } from "./towatch/ToWatch.js"
 import { Watched } from "./watched/Watched.js"
 import { Rankings } from "./rankings/Rankings.js"
 import { RankingProvider } from './rankings/RankingProvider'
+import { TopListProvider } from "./toplist/ToplistProvider.js"
 
 
 
@@ -154,9 +155,11 @@ export const MMS = () => (
         <Route exact path="/rankings" render={(props) => {
             if (localStorage.getItem("token")) {
                 return <>
+                <TopListProvider>
                 <RankingProvider>
                     <Rankings {...props}/>
                 </RankingProvider>
+                </TopListProvider>
                 </>
             } else {
                 return <Redirect to="/home" />
