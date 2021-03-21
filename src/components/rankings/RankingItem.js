@@ -22,9 +22,7 @@ export const RankingItem = (props) => {
     }
 
     const insert = () => {
-        console.warn(ranking)
-        console.warn(count)
-        if (ranking > 0 && ranking < count + 1) {
+        if (ranking > 0 && (ranking <= count + 1 || count == 0)) {
             console.warn("inserting")
             insertRanking(item.id, ranking)
             setRefresh(!refresh)
@@ -48,7 +46,7 @@ export const RankingItem = (props) => {
                 </div>
                 :
                 <div className="mt-4"><h4>Rank:</h4> 
-                <input style={{width:'4rem'}} type="number" class="text-center" onChange={(e => setRanking(e.target.value) )} defaultValue={item.ranking ? item.ranking : 0} />
+                <input style={{width:'4rem'}} type="number" class="text-center form-control m-1" onChange={(e => setRanking(e.target.value) )} defaultValue={item.ranking ? item.ranking : 0} />
                 <div className="text-center"><Button onClick={insert} className="btn-sm">Insert</Button></div>
             </div>
             }

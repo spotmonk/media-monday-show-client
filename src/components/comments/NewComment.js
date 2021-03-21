@@ -37,7 +37,7 @@ export const NewComment = (props) => {
     <>
     {currentUser && 
       <div className="newComment item_direction d-flex" >
-        <div className="user align-content-center m-2 col-4">
+        <div className=" align-content-center m-2 col-4">
           <img className="profilepic rounded-circle" src={currentUser.profile_image_url} />
           <h6 className="text-center">{currentUser.user_id && currentUser.user_id.username}</h6>
         </div>
