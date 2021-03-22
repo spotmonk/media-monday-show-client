@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../users/UserProvider'
-import { ReviewContext } from './ReviewProvider'
+import { TopListCommentsContext } from './ToplistCommentsProvider'
 
 
-export const NewReviewComment = (props) => {
-    const { review, reload, setReload } = props
+export const NewTopListComment = (props) => {
+    const { toplist, reload, setReload } = props
     const [commentText, setCommentText] = useState("")
-    const {postNewReviewComment } = useContext(ReviewContext)
+    const {postNewTopListComment } = useContext(TopListCommentsContext)
     const {user, getUser } = useContext(UserContext)
 
     useEffect(() => {
@@ -15,14 +15,13 @@ export const NewReviewComment = (props) => {
 
     const makeNewComment =() => {
         const comment = {
-            "review_id": review.id,
+            "toplist_id": toplist,
             "user_id": localStorage.getItem('user_id'),
             "text": commentText
         }
-         postNewReviewComment(comment)
+         postNewTopListComment(comment)
          .then(setReload(!reload))
          .then(setCommentText(''))
-        //  .then(window.location.reload(true));
     }
   
     const handleKeyDown = (e)=> {
@@ -33,15 +32,15 @@ export const NewReviewComment = (props) => {
 
     return (
     <>
-    {review && 
-      <div className="newComment item_direction d-flex" >
+    {user && 
+      <div className="newCommentBox mt-3 item_direction d-flex" >
         <div className="user align-content-center m-2 col-4">
           <img className="profilepic rounded-circle" src={user.profile_image_url} />
           <h6>{user.user_id && user.user_id.username}</h6>
         </div>
         <div className="comment-text col-7 m-2">
         <fieldset>
-                    <textarea value={commentText} onKeyDown={e=> handleKeyDown(e)} onChange={e => setCommentText(e.target.value)} name="comment" className="form-control" placeholder="This Review is Great!" />
+                    <textarea value={commentText} onKeyDown={e=> handleKeyDown(e)} onChange={e => setCommentText(e.target.value)} name="comment" className="form-control" placeholder="This List is Great!" />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
