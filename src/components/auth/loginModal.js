@@ -51,7 +51,7 @@ export const LoginModal = (props) => {
         <Form>
                 <FormGroup>
                   <Label for="usernameInput">
-                    Name:
+                    Username: (case sensitive)
                   </Label>
                   <Input type="text" name="usernameInput" id="usernameInput" placeholder="Enter your User Name" onChange={ e => setUserName(e.target.value)}/>
                   <Label for="passwordInput">
