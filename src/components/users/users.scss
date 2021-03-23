@@ -11,4 +11,15 @@
     width: auto;
 }
 
+.user-media-div {
+    color: black;
+    background-color: White;
+    border-radius: 5px;
+    width: 90%;
+    min-width: 575px;
+    max-height: 500px;
+    overflow: auto;
+}
+
 @media screen and (max-width: 1000px) { .allusers {flex-direction: column;} }
+@media screen and (max-width: 1000px) { .user-profile {flex-direction: column;} }

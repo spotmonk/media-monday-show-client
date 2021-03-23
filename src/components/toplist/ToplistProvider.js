@@ -6,6 +6,7 @@ export const TopListProvider = (props) => {
     const [topList, setTopList] = useState([])
     const [list, setList] = useState([])
     const [allLists, setAllLists] = useState([])
+    const [userList, setUserList] = useState([])
 
     const createList = (title, number) => {
         return fetch(`http://localhost:8000/toplists/new?title=${title}&number=${number}`, {
@@ -35,6 +36,15 @@ export const TopListProvider = (props) => {
             .then(setList)
     }
 
+    const getUserLists = (userId) => {
+        return fetch(`http://localhost:8000/toplists?user_id=${userId}`, {
+            headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }})
+            .then(response => response.json())
+            .then(setUserList)
+    }
+
         return (
             <TopListContext.Provider value={{
             list,
@@ -45,7 +55,10 @@ export const TopListProvider = (props) => {
             setAllLists,
             getAllLists,
             topList,
-            setTopList
+            setTopList,
+            userList,
+            setUserList,
+            getUserLists
             }} >
                 { props.children }
             </TopListContext.Provider>

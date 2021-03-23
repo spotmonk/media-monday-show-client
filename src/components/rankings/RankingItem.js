@@ -46,7 +46,7 @@ export const RankingItem = (props) => {
                 </div>
                 :
                 <div className="mt-4"><h4>Rank:</h4> 
-                <input style={{width:'4rem'}} type="number" class="text-center form-control m-1" onChange={(e => setRanking(e.target.value) )} defaultValue={item.ranking ? item.ranking : 0} />
+                <input style={{width:'4rem'}} type="number" min="1" max={count + 1} class="text-center form-control m-1" onChange={(e => setRanking(e.target.value) )} defaultValue={item.ranking ? item.ranking : 0} />
                 <div className="text-center"><Button onClick={insert} className="btn-sm">Insert</Button></div>
             </div>
             }

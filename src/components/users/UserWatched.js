@@ -6,38 +6,37 @@ import { Link } from 'react-router-dom'
 import { RankingProvider } from '../rankings/RankingProvider'
 
 
-export const Watched = () =>{
+export const UserWatched = (props) =>{
     const {filteredWatched, getFilteredWatched, watchlist, getWatchList} = useContext(WatchContext)
     const [searchTerms, setSearchTerms ] = useState("")
     const [media, setMedia ] = useState("")
-    
+    const { userId } = props
     useEffect(()=> {
         getWatchList()
-        .then(getFilteredWatched(localStorage.getItem('user_id'), searchTerms, media))
+        .then(getFilteredWatched(userId, searchTerms, media))
     }, [searchTerms, media])
 
     useEffect(() => {
-        getFilteredWatched(localStorage.getItem('user_id'), searchTerms, media)
+        getFilteredWatched(userId, searchTerms, media)
     },[watchlist, media])
 
     return(<> 
-        <input type="text" value={searchTerms} onChange={e => setSearchTerms(e.target.value)} name="search" className="form-control col-4 offset-4" placeholder="Taskmaster" />
+        <div className="inline-block"><input type="text" value={searchTerms} onChange={e => setSearchTerms(e.target.value)} name="search" className="form-control col-4 offset-4" placeholder="Taskmaster" />
         <select className="form-control col-2 offset-5" onChange={e => setMedia(e.target.value)}>
         <option value="">All</option>
         <option value="TV">TV Shows</option>
         <option value="Movie">Movies</option>
         </select>
-        <div className="media-div p-4 d-flex flex-wrap">
+        </div>
+        <div className="user-media-div p-1 d-flex flex-wrap">
         {filteredWatched.count > 0 && filteredWatched.results.map(w => (
-            <div className="col-sm-3 mb-4 ">
+            <div className="col-sm-4 mb-4 ">
             <div className="show-image">
                 <div className="image">
                     <div className="overlay">
                     <img className="poster" src={w.media_id.poster_url} /></div>
             </div>
             <div className="btndiv text-center">
-            {/* <div className="m-3"><Link to={`editwatched/${w.id}`}><Button color="light">Edit Watched Details</Button></Link></div> */}
-            <div><RankingProvider><WatchedButton getWatchList={getWatchList} watchedId={w.id} mediaId={w.media_id.id} size="lg" /></RankingProvider></div>
             </div>
             </div>
             <Link to={`/media/${w.media_id.id}`} style={{ textDecoration: 'none', color:'black' }} >

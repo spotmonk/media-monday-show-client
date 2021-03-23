@@ -41,7 +41,7 @@ export const NavBar = (props) => {
             <Link to="/towatch" style={{ textDecoration: 'none' }}><DropdownItem>To Watch</DropdownItem></Link>
             <Link to="/watched" style={{ textDecoration: 'none' }}> <DropdownItem>Watched</DropdownItem></Link>
             <Link to="/rankings" style={{ textDecoration: 'none' }}><DropdownItem>Rankings</DropdownItem></Link>
-                <DropdownItem>My Profile</DropdownItem>
+            <Link to={`/users/${localStorage.getItem('user_id')}`} style={{ textDecoration: 'none' }}><DropdownItem>My Profile</DropdownItem></Link>
             </DropdownMenu>
             </Dropdown>
             <Dropdown className="mr-4 bg-dark" isOpen={dropdown2Open} toggle={toggle2}>
