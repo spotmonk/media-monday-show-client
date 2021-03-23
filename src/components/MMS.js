@@ -19,6 +19,7 @@ import { RankingProvider } from './rankings/RankingProvider'
 import { TopListProvider } from "./toplist/ToplistProvider.js"
 import { TopLists } from './toplist/TopLists.js'
 import { TopList } from './toplist/Toplist.js'
+import { User } from './users/User.js'
 
 
 
@@ -186,6 +187,22 @@ export const MMS = () => (
                 <TopListProvider>
                     <TopList {...props}/>
                 </TopListProvider>
+                </>
+            } else {
+                return <Redirect to="/home" />
+            }
+        }} />
+
+        <Route exact path="/users/:userId" render={(props) => {
+            if (localStorage.getItem("token")) {
+                return <>
+                  <UserProvider>
+                    <WatchProvider>
+                        <TopListProvider>
+                            <User {...props} />
+                        </TopListProvider>
+                    </WatchProvider>
+                 </UserProvider>
                 </>
             } else {
                 return <Redirect to="/home" />
